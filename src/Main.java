@@ -1,9 +1,9 @@
 import com.sun.source.tree.ReturnTree;
+//William David Suarez Orjuela
 import java.util.*;
 public class Main {
     public static void main(String[] args) {
         menu();
-        System.out.println("Imc");
 
 
     }
@@ -19,6 +19,7 @@ public class Main {
             System.out.println("2- 3 dados lanzados 20 rondas");
             System.out.println("3- Indice de grasa corporal");
             System.out.println("4- Numeros primos");
+            System.out.println("5- Carrera de 2");
             System.out.println("6- Salir");
 
             eleccion= teclado.nextInt();
@@ -36,6 +37,9 @@ public class Main {
                 case 4:
                     primo();
                     break;
+                case 5:
+                    carrera();
+                    break;
                 case 6:
                     System.out.println("Saliendo del ciclo");
                     ejecucion=false;
@@ -50,7 +54,7 @@ public class Main {
     }
     public static void dado2(){
         Random aleatorio=new Random();
-        int sumaD1=0, sumaD2=0, sumaD3=0,dado2, dado1;
+        int sumaD1=0, sumaD2=0,dado2, dado1;
 
         for (int i=1; i<=20; i++){
             dado1= aleatorio.nextInt((6-1)+1)+1;
@@ -60,7 +64,7 @@ public class Main {
             sumaD2=sumaD2+dado2;
         }
 
-        if (sumaD1>sumaD2 && sumaD1>sumaD3) {
+        if (sumaD1>sumaD2) {
             System.out.println("El dado 1 es el ganador: " + sumaD1);
         }else
             System.out.println("El dado2 es el ganador: "+sumaD2);
@@ -188,10 +192,59 @@ public class Main {
 
         }
 
+    }
+    public static void carrera(){
+        Random aleatorio=new Random();
+        int corredor1=0, corredor2=0, sumac1=0, sumac2=0, su2=0, su=0;
 
+        boolean start=true;
 
+        while(start){
+            corredor1=aleatorio.nextInt((6-1)+1)+1;
+            corredor2= aleatorio.nextInt((6-1)+1)+1;
+            sumac1= sumac1+corredor1;
+            sumac2= sumac2+corredor2;
 
+            if (corredor1 == 6) {
+
+                su = sumac1- 2;
+
+                    System.out.println("El corredor 1 pierde 2 pasos: " + su);
+
+            } else if (corredor1 == 3) {
+
+                su = sumac1+ 3;
+                System.out.println("El corredor 1 gana 3 pasos: " + su);
+            }
+
+            if (corredor2 == 6) {
+                    su2 = sumac2 - 2;
+                    System.out.println("El corredor 2 pierde 2 pasos: " + su2);
+                } else if (corredor2 == 3) {
+
+                    su2 = sumac2 + 3;
+                    System.out.println("El corredor 2 gana 3 pasos: " + su2);
+
+                }
+            if (su>=50 && su>=su2){
+                start=false;
+            } else if (su2>=50 && su>su2) {
+                start=false;
+            }
+            if (su>=50){
+                System.out.println("El ganador es el corredor 1 con: "+su +" pasos");
+                System.out.println("El perdedor es el corredor 2 con: "+su2+ " pasos");
+            } else if (su2>=50) {
+                System.out.println("El ganador es el corredor 2 con: "+su2+ " pasos");
+                System.out.println("El perdedor es el corredor 1 con: "+su+" pasos");
+
+            }
+
+            }
 
 
     }
-}
+
+    }
+
+
